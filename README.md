@@ -22,18 +22,26 @@ To develop a microservice in Python using FastAPI that:
 
 
 ## Project Structure
+```
 report_microservice/
 ├── app/
-│   ├── main.py                - App entrypoint
-│   ├── routes/                - All API endpoints
-│   ├── services/              - Report logic
-│   └── utils/                 - Logger setup
-├── data/                     - Uploaded/generated files (input.csv, reference.csv, output.csv)
-├── sample_data/              - Sample test files for interviewer
-├── tests/                    - Unit test(s)
-├── Dockerfile                - Docker build config
-├── requirements.txt          - Dependencies
-└── README.md                 - Project instructions
+│   ├── main.py                # App entrypoint
+│   ├── routes/                # All API endpoints
+│   │   ├── upload.py
+│   │   ├── config.py
+│   │   └── generate.py
+│   ├── services/              # Report logic
+│   │   └── processor.py
+│   └── utils/                 # Logger setup
+│       └── logger.py
+├── data/                      # Uploaded/generated files (input.csv, reference.csv, output.csv)
+├── sample_data/               # Sample test files for interviewer
+├── tests/                     # Unit test(s)
+│   └── test_generate.py
+├── Dockerfile                 # Docker build config
+├── requirements.txt           # Dependencies
+└── README.md                  # Project instructions
+```
 
 
 ## Setup Instructions
