@@ -1,10 +1,10 @@
-# 📊 Report Generator Microservice
+# Report Generator Microservice
 
 This is a backend microservice developed using **FastAPI** to fulfill the NatWest Markets Backend Developer Assessment. It allows users to upload structured CSV files and transformation rules in YAML format to generate a final report in CSV, Excel, and JSON formats.
 
 ---
 
-## ✅ Features
+## Features
 
 - Upload `input.csv` and `reference.csv`
 - Upload transformation logic via `rules.yaml`
@@ -17,7 +17,7 @@ This is a backend microservice developed using **FastAPI** to fulfill the NatWes
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 report_microservice/
@@ -40,9 +40,9 @@ report_microservice/
 
 ---
 
-## 🛠️ Setup Instructions
+## Setup Instructions
 
-### 🔧 Run Locally
+###  Run Locally
 
 **Install dependencies:**
 ```bash
@@ -60,7 +60,7 @@ http://localhost:8000/docs  ← Swagger UI
 http://localhost:8000/redoc ← Redoc (optional)
 ```
 
-### 🐳 Run with Docker
+### Run with Docker
 ```bash
 docker build -t report-microservice .
 docker run -p 8000:8000 report-microservice
@@ -68,7 +68,7 @@ docker run -p 8000:8000 report-microservice
 
 ---
 
-## 🌐 API Endpoints
+## API Endpoints
 
 | Method | Endpoint            | Description                          |
 |--------|---------------------|--------------------------------------|
@@ -81,7 +81,7 @@ docker run -p 8000:8000 report-microservice
 
 ---
 
-## 🧪 Run Unit Tests
+## Run Unit Tests
 
 ```bash
 pytest tests/
@@ -89,7 +89,7 @@ pytest tests/
 
 ---
 
-## 🔐 Validations
+## Validations
 
 - Ensures required columns are present in uploaded CSVs
 - YAML file is parsed and validated for necessary keys (`outfield`, `operation`, `fields`)
@@ -98,7 +98,7 @@ pytest tests/
 
 ---
 
-## ✨ Tech Stack
+## Tech Stack
 
 - **FastAPI** – Web framework
 - **Pandas** – Data transformation
