@@ -1,0 +1,26 @@
+output_rules:
+- fields:
+  - field1
+  - field2
+  operation: add
+  outfield: total
+- fields:
+  - refdata1
+  operation: assign
+  outfield: name
+- fields:
+  - refdata2
+  - refdata3
+  operation: add
+  outfield: score
+- fields:
+  - field3
+  - field5
+  - refdata4
+  operation: multiply_max
+  outfield: impact
+- fields:
+  - field5
+  - refdata4
+  operation: max
+  outfield: maxval
