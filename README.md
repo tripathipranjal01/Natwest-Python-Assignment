@@ -1,109 +1,95 @@
-# Report Generator Microservice
+# NatWest Markets Python Backend Developer Assessment
 
-This is a backend microservice developed using **FastAPI** to fulfill the NatWest Markets Backend Developer Assessment. It allows users to upload structured CSV files and transformation rules in YAML format to generate a final report in CSV, Excel, and JSON formats.
+This repository contains my completed submission for the Python Backend Developer Assessment provided by NatWest Markets.
 
----
 
-## Features
+## Objective
+To develop a microservice in Python using FastAPI that:
+- Accepts large input files
+- Applies transformation rules (add, assign, max, multiply_max)
+- Joins with a reference dataset
+- Generates output in CSV, Excel (.xlsx), and JSON formats
 
-- Upload `input.csv` and `reference.csv`
-- Upload transformation logic via `rules.yaml`
-- Merge and process data based on rules
-- Output report in CSV, XLSX, and JSON formats
-- Input validation and structured logging
-- Docker support for easy deployment
-- Swagger UI for API interaction
-- Unit test for core functionality
 
----
+## Technologies Used
+- FastAPI: Web framework for building the API
+- Pandas: Data processing and transformation
+- YAML: Configuration of transformation logic
+- Docker: Containerization for portability
+- Uvicorn: ASGI server for running the FastAPI app
+- Pytest: For unit testing
+- Git & GitHub: Version control and repository hosting
 
-##  Project Structure
 
-```
+## Project Structure
 report_microservice/
 ├── app/
-│   ├── main.py                  # FastAPI entrypoint
-│   ├── routes/                  # API endpoint routers
-│   │   ├── upload.py
-│   │   ├── config.py
-│   │   └── generate.py
-│   ├── services/
-│   │   └── processor.py         # Report generation logic
-│   └── utils/
-│       └── logger.py            # Logging config
-├── data/                        # Uploaded files and output
-├── tests/                       # Unit test
-├── Dockerfile                   # Docker support
-├── requirements.txt             # Dependencies
-└── README.md                    # Project instructions
-```
+│   ├── main.py                - App entrypoint
+│   ├── routes/                - All API endpoints
+│   ├── services/              - Report logic
+│   └── utils/                 - Logger setup
+├── data/                     - Uploaded/generated files (input.csv, reference.csv, output.csv)
+├── sample_data/              - Sample test files for interviewer
+├── tests/                    - Unit test(s)
+├── Dockerfile                - Docker build config
+├── requirements.txt          - Dependencies
+└── README.md                 - Project instructions
 
----
 
 ## Setup Instructions
 
-###  Run Locally
+Install dependencies:
 
-**Install dependencies:**
-```bash
 pip install -r requirements.txt
-```
 
-**Start the FastAPI app:**
-```bash
+Run FastAPI project:
+
 uvicorn app.main:app --reload
-```
 
-Open your browser at:
-```
-http://localhost:8000/docs  ← Swagger UI
-http://localhost:8000/redoc ← Redoc (optional)
-```
+Open in browser:
+http://127.0.0.1:8000/docs - Swagger UI
+http://127.0.0.1:8000/redoc - Redoc
 
-### Run with Docker
-```bash
+
+## Docker Support
+Build image:
+
 docker build -t report-microservice .
-docker run -p 8000:8000 report-microservice
-```
 
----
+Run container:
+
+docker run -p 8000:8000 report-microservice
+
+
+## Test Execution
+
+pytest tests/
+
+
+## Sample Test Files
+Located inside the sample_data/ folder:
+- input_large.csv
+- reference_large.csv
+- rules_large.yaml
+
+Use these files to test large datasets via Swagger UI.
+
 
 ## API Endpoints
+Method | URL | Description
+-------|-----|------------
+POST   | /upload/input     | Upload input CSV
+POST   | /upload/reference | Upload reference CSV
+POST   | /config/rules     | Upload transformation rules
+POST   | /generate-report  | Generate output reports
+GET    | /download-report  | Download final report CSV
+GET    | /                 | App health check
 
-| Method | Endpoint            | Description                          |
-|--------|---------------------|--------------------------------------|
-| POST   | `/upload/input`     | Upload the input CSV file            |
-| POST   | `/upload/reference` | Upload the reference CSV file        |
-| POST   | `/config/rules`     | Upload YAML transformation rules     |
-| POST   | `/generate-report`  | Process and generate the report      |
-| GET    | `/download-report`  | Download the latest generated report |
-| GET    | `/`                 | Health check endpoint                |
 
----
-
-## Run Unit Tests
-
-```bash
-pytest tests/
-```
-
----
-
-## Validations
-
-- Ensures required columns are present in uploaded CSVs
-- YAML file is parsed and validated for necessary keys (`outfield`, `operation`, `fields`)
-- Supports UTF-8, UTF-8 BOM, ISO encodings
-- Logs every transformation step
-
----
-
-## Tech Stack
-
-- **FastAPI** – Web framework
-- **Pandas** – Data transformation
-- **YAML** – Rule configuration
-- **Docker** – Containerization
-- **Uvicorn** – ASGI server
-
----
+## Summary of this project 
+This project satisfies:
+- All functional requirements from the assessment 
+- Structured logging and exception handling
+- Multi-format output (CSV, XLSX, JSON)
+- Real-world scalability (tested up to 1000 rows)
+- Code is modular, dockerized, and production-ready
